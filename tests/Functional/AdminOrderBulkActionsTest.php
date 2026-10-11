@@ -9,6 +9,7 @@ use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\OrderPaymentStates;
+use Sylius\Component\Core\OrderShippingStates;
 use Sylius\Component\Order\OrderTransitions;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -44,6 +45,15 @@ final class AdminOrderBulkActionsTest extends WebTestCase
     {
         $this->loginAdmin();
         [$first, $second] = $this->newOrders(2);
+        // Random fixtures: the payments may be paid and the shipments shipped, which cannot be cancelled.
+        foreach ($first->getPayments() as $payment) {
+            $payment->setState(PaymentInterface::STATE_NEW);
+        }
+        foreach ($first->getShipments() as $shipment) {
+            $shipment->setState(ShipmentInterface::STATE_READY);
+        }
+        $first->setPaymentState(OrderPaymentStates::STATE_AWAITING_PAYMENT);
+        $first->setShippingState(OrderShippingStates::STATE_READY);
         $this->stateMachine()->apply($second, OrderTransitions::GRAPH, OrderTransitions::TRANSITION_CANCEL);
         $this->entityManager()->flush();
 
