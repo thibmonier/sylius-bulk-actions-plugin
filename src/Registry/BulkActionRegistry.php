@@ -12,7 +12,7 @@ final class BulkActionRegistry implements BulkActionRegistryInterface
     private ?array $actions = null;
 
     /**
-     * @param iterable<BulkActionInterface> $actions
+     * @param iterable<BulkActionInterface> $taggedActions
      * @param list<string> $disabledCodes
      */
     public function __construct(
@@ -41,7 +41,7 @@ final class BulkActionRegistry implements BulkActionRegistryInterface
         }
 
         $actions = [];
-        foreach ($this->actions_ as $action) {
+        foreach ($this->taggedActions as $action) {
             $code = $action->getCode();
             if (isset($actions[$code])) {
                 throw new \LogicException(sprintf('Two bulk actions use the code "%s" (%s and %s).', $code, $actions[$code]::class, $action::class));
