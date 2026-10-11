@@ -1,0 +1,47 @@
+{% set action = hookable_metadata.context.action %}
+{% set form = hookable_metadata.context.form %}
+{% set preview = hookable_metadata.context.preview %}
+{% set count = hookable_metadata.context.count %}
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row g-3">
+            <div class="col-12 col-lg-8">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                <div class="card" {{ sylius_test_html_attribute('tmonier-bulk-action-form', action.code) }}>
+                    <div class="card-body">
+                        <p>{{ 'tmonier_bulk_actions.ui.confirm'|trans({'%action%': action.label|trans, '%count%': count}) }}</p>
+                        {{ form_errors(form) }}
+                        {% if form.data is defined %}
+                            {{ form_widget(form.data) }}
+                        {% endif %}
+                        {{ form_rest(form) }}
+                    </div>
+                    <div class="card-footer d-flex gap-2 justify-content-end">
+                        <a class="btn" href="{{ hookable_metadata.context.redirect }}">{{ 'sylius.ui.cancel'|trans }}</a>
+                        <button type="submit" class="btn btn-primary" {{ sylius_test_html_attribute('tmonier-bulk-action-submit') }}>
+                            {{ ux_icon(action.icon, {'class': 'icon'}) }}
+                            {{ 'tmonier_bulk_actions.ui.apply_to'|trans({'%count%': count}) }}
+                        </button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">{{ 'tmonier_bulk_actions.ui.selected_items'|trans({'%count%': count}) }}</h3>
+                    </div>
+                    <div class="list-group list-group-flush" {{ sylius_test_html_attribute('tmonier-bulk-action-preview') }}>
+                        {% for label in preview %}
+                            <div class="list-group-item">{{ label }}</div>
+                        {% endfor %}
+                        {% if count > preview|length %}
+                            <div class="list-group-item text-secondary">{{ 'tmonier_bulk_actions.ui.more_items'|trans({'%count%': count - preview|length}) }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

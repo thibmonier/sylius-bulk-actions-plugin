@@ -1,0 +1,41 @@
+tmonier_bulk_actions:
+    ui:
+        bulk_actions: 'Acciones masivas'
+        report_details: 'Elementos no actualizados'
+        item: Elemento
+        status: Estado
+        reason: Motivo
+        status_applied: Actualizado
+        status_skipped: Omitido
+        status_failed: Fallido
+        more_items: 'y %count% más'
+        selected_items: '%count% elementos seleccionados'
+        confirm: '«%action%» se aplicará a los %count% elementos seleccionados. Cada elemento se procesa por separado: los que no se pueden modificar se omiten y se listan en el informe.'
+        apply_to: 'Aplicar a %count% elementos'
+        ship_with_tracking_codes: 'Enviar con números de seguimiento'
+        tracking_codes_help: 'Una línea por envío: número de pedido y número de seguimiento separados por «;», «,» o un tabulador, p. ej. «000000042;1Z999AA10123456784». Los envíos listos de estos pedidos se envían con su propio número de seguimiento y los clientes reciben el correo de confirmación de envío.'
+        ship: Enviar
+    action:
+        product_enable: Activar
+        product_disable: Desactivar
+        product_variant_enable: Activar
+        product_variant_disable: Desactivar
+        product_add_taxon: 'Añadir a una categoría'
+        product_remove_taxon: 'Quitar de una categoría'
+        product_add_channels: 'Añadir a canales'
+        product_remove_channels: 'Quitar de canales'
+        order_cancel: Cancelar
+        order_payment_complete: 'Marcar como pagado'
+        payment_complete: 'Marcar como pagado'
+        shipment_ship: 'Enviar (sin número de seguimiento)'
+        customer_assign_group: 'Asignar a un grupo'
+        customer_remove_group: 'Quitar de su grupo'
+        customer_enable_account: 'Activar la cuenta'
+        customer_disable_account: 'Desactivar la cuenta'
+    form:
+        taxon: Categoría
+        main_taxon: 'Definirla también como categoría principal'
+        channels: Canales
+        customer_group: 'Grupo de clientes'
+        choose: Elegir…
+        tracking_codes: 'Números de pedido y de seguimiento'

@@ -1,0 +1,26 @@
+tmonier_bulk_actions:
+    flash:
+        report: '%action%: zaktualizowano %applied%, pominięto %skipped%, błędy %failed%.'
+        no_selection: 'Wybierz co najmniej jeden element.'
+        too_many_items: 'Wybrano elementy: %count%. Akcja zbiorcza przetwarza maksymalnie %max% elementów. Wybierz mniej elementów i spróbuj ponownie.'
+        no_tracking_lines: 'Nie znaleziono poprawnej linii „numer zamówienia;numer przesyłki”.'
+    skip:
+        transition_not_allowed: 'Niemożliwe w obecnym stanie.'
+        stopped_by_listener: 'Odrzucone przez reguły sklepu.'
+        already_enabled: 'Już włączone.'
+        already_disabled: 'Już wyłączone.'
+        already_in_taxon: 'Już w tej kategorii.'
+        not_in_taxon: 'Nie należy do tej kategorii.'
+        already_in_channels: 'Już w tych kanałach.'
+        not_in_channels: 'Nie należy do tych kanałów.'
+        missing_channel_pricing: 'Wariant %variant% nie ma ceny w kanale %channel%.'
+        no_open_payment: 'Brak płatności do zrealizowania.'
+        already_in_group: 'Już w tej grupie.'
+        no_group: 'Nie należy do żadnej grupy.'
+        no_account: 'Klient-gość bez konta w sklepie.'
+        not_found: 'Nie znaleziono (usunięto w międzyczasie?).'
+        not_supported: 'Nieobsługiwane przez tę akcję.'
+        unknown_order: 'Brak zamówienia o tym numerze.'
+        no_shipment_to_ship: 'Brak przesyłki gotowej do wysłania.'
+    fail:
+        aborted: 'Nie przetworzono: operacja została przerwana po błędzie bazy danych.'

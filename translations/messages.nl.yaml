@@ -1,0 +1,41 @@
+tmonier_bulk_actions:
+    ui:
+        bulk_actions: Bulkacties
+        report_details: 'Niet bijgewerkte items'
+        item: Item
+        status: Status
+        reason: Reden
+        status_applied: Bijgewerkt
+        status_skipped: Overgeslagen
+        status_failed: Mislukt
+        more_items: 'en nog %count%'
+        selected_items: '%count% geselecteerde items'
+        confirm: '"%action%" wordt toegepast op de %count% geselecteerde items. Elk item wordt afzonderlijk verwerkt: items die niet kunnen worden gewijzigd, worden overgeslagen en in het rapport vermeld.'
+        apply_to: 'Toepassen op %count% items'
+        ship_with_tracking_codes: 'Verzenden met trackingcodes'
+        tracking_codes_help: 'Eén regel per zending: ordernummer en trackingcode gescheiden door ";", "," of een tab, bijvoorbeeld "000000042;1Z999AA10123456784". De verzendklare zendingen van deze bestellingen worden verzonden met hun eigen trackingcode en de klanten ontvangen de verzendbevestiging per e-mail.'
+        ship: Verzenden
+    action:
+        product_enable: Inschakelen
+        product_disable: Uitschakelen
+        product_variant_enable: Inschakelen
+        product_variant_disable: Uitschakelen
+        product_add_taxon: 'Toevoegen aan een categorie'
+        product_remove_taxon: 'Verwijderen uit een categorie'
+        product_add_channels: 'Toevoegen aan kanalen'
+        product_remove_channels: 'Verwijderen uit kanalen'
+        order_cancel: Annuleren
+        order_payment_complete: 'Markeren als betaald'
+        payment_complete: 'Markeren als betaald'
+        shipment_ship: 'Verzenden (zonder trackingcode)'
+        customer_assign_group: 'Toewijzen aan een groep'
+        customer_remove_group: 'Verwijderen uit hun groep'
+        customer_enable_account: 'Account inschakelen'
+        customer_disable_account: 'Account uitschakelen'
+    form:
+        taxon: Categorie
+        main_taxon: 'Ook instellen als hoofdcategorie'
+        channels: Kanalen
+        customer_group: Klantengroep
+        choose: Kiezen…
+        tracking_codes: 'Ordernummers en trackingcodes'

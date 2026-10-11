@@ -1,0 +1,26 @@
+tmonier_bulk_actions:
+    flash:
+        report: '%action%: %applied% actualizados, %skipped% omitidos, %failed% fallidos.'
+        no_selection: 'Seleccione al menos un elemento.'
+        too_many_items: '%count% elementos seleccionados: una acción masiva procesa como máximo %max% elementos. Seleccione menos elementos e inténtelo de nuevo.'
+        no_tracking_lines: 'No se encontró ninguna línea válida «número de pedido;número de seguimiento».'
+    skip:
+        transition_not_allowed: 'No es posible en el estado actual.'
+        stopped_by_listener: 'Rechazado por las reglas de la tienda.'
+        already_enabled: 'Ya activado.'
+        already_disabled: 'Ya desactivado.'
+        already_in_taxon: 'Ya está en esta categoría.'
+        not_in_taxon: 'No está en esta categoría.'
+        already_in_channels: 'Ya está en estos canales.'
+        not_in_channels: 'No está en estos canales.'
+        missing_channel_pricing: 'La variante %variant% no tiene precio en el canal %channel%.'
+        no_open_payment: 'Ningún pago por completar.'
+        already_in_group: 'Ya está en este grupo.'
+        no_group: 'No pertenece a ningún grupo.'
+        no_account: 'Cliente invitado sin cuenta en la tienda.'
+        not_found: 'No encontrado (¿eliminado mientras tanto?).'
+        not_supported: 'No compatible con esta acción.'
+        unknown_order: 'Ningún pedido con este número.'
+        no_shipment_to_ship: 'Ningún envío listo para enviar.'
+    fail:
+        aborted: 'No procesado: la ejecución se detuvo tras un error de base de datos.'

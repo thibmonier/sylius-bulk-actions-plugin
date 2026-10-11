@@ -1,0 +1,7 @@
+{% import '@SyliusAdmin/shared/helper/header.html.twig' as header %}
+
+{% set action = hookable_metadata.context.action %}
+
+<div class="col-12 col-md-6">
+    {{ header.h1(action.label|trans, action.icon, 'tmonier_bulk_actions.ui.selected_items'|trans({'%count%': hookable_metadata.context.count})) }}
+</div>

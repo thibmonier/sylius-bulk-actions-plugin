@@ -1,0 +1,26 @@
+tmonier_bulk_actions:
+    flash:
+        report: '%action%: %applied% aktualisiert, %skipped% übersprungen, %failed% fehlgeschlagen.'
+        no_selection: 'Wählen Sie mindestens ein Element aus.'
+        too_many_items: '%count% Elemente ausgewählt: Eine Massenaktion verarbeitet höchstens %max% Elemente. Wählen Sie weniger Elemente aus und versuchen Sie es erneut.'
+        no_tracking_lines: 'Keine gültige Zeile „Bestellnummer;Sendungsnummer“ gefunden.'
+    skip:
+        transition_not_allowed: 'Im aktuellen Zustand nicht möglich.'
+        stopped_by_listener: 'Von den Shop-Regeln abgelehnt.'
+        already_enabled: 'Bereits aktiviert.'
+        already_disabled: 'Bereits deaktiviert.'
+        already_in_taxon: 'Bereits in dieser Kategorie.'
+        not_in_taxon: 'Nicht in dieser Kategorie.'
+        already_in_channels: 'Bereits in diesen Kanälen.'
+        not_in_channels: 'Nicht in diesen Kanälen.'
+        missing_channel_pricing: 'Die Variante %variant% hat keinen Preis im Kanal %channel%.'
+        no_open_payment: 'Keine abzuschließende Zahlung.'
+        already_in_group: 'Bereits in dieser Gruppe.'
+        no_group: 'In keiner Gruppe.'
+        no_account: 'Gastkunde ohne Shop-Konto.'
+        not_found: 'Nicht gefunden (inzwischen gelöscht?).'
+        not_supported: 'Von dieser Aktion nicht unterstützt.'
+        unknown_order: 'Keine Bestellung mit dieser Nummer.'
+        no_shipment_to_ship: 'Keine versandbereite Sendung.'
+    fail:
+        aborted: 'Nicht verarbeitet: Der Vorgang wurde nach einem Datenbankfehler abgebrochen.'

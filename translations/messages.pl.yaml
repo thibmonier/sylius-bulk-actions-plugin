@@ -1,0 +1,41 @@
+tmonier_bulk_actions:
+    ui:
+        bulk_actions: 'Akcje zbiorcze'
+        report_details: 'Niezaktualizowane elementy'
+        item: Element
+        status: Status
+        reason: Powód
+        status_applied: Zaktualizowano
+        status_skipped: Pominięto
+        status_failed: Błąd
+        more_items: 'i %count% więcej'
+        selected_items: 'Wybrane elementy: %count%'
+        confirm: '„%action%” zostanie zastosowane do wybranych elementów (%count%). Każdy element jest przetwarzany osobno: elementy, których nie można zmienić, są pomijane i wymienione w raporcie.'
+        apply_to: 'Zastosuj do elementów: %count%'
+        ship_with_tracking_codes: 'Wyślij z numerami przesyłek'
+        tracking_codes_help: 'Jedna linia na przesyłkę: numer zamówienia i numer przesyłki oddzielone „;”, „,” lub tabulatorem, np. „000000042;1Z999AA10123456784”. Gotowe przesyłki tych zamówień zostaną wysłane z własnym numerem przesyłki, a klienci otrzymają e-mail z potwierdzeniem wysyłki.'
+        ship: Wyślij
+    action:
+        product_enable: Włącz
+        product_disable: Wyłącz
+        product_variant_enable: Włącz
+        product_variant_disable: Wyłącz
+        product_add_taxon: 'Dodaj do kategorii'
+        product_remove_taxon: 'Usuń z kategorii'
+        product_add_channels: 'Dodaj do kanałów'
+        product_remove_channels: 'Usuń z kanałów'
+        order_cancel: Anuluj
+        order_payment_complete: 'Oznacz jako opłacone'
+        payment_complete: 'Oznacz jako opłacone'
+        shipment_ship: 'Wyślij (bez numeru przesyłki)'
+        customer_assign_group: 'Przypisz do grupy'
+        customer_remove_group: 'Usuń z ich grupy'
+        customer_enable_account: 'Włącz konto'
+        customer_disable_account: 'Wyłącz konto'
+    form:
+        taxon: Kategoria
+        main_taxon: 'Ustaw też jako kategorię główną'
+        channels: Kanały
+        customer_group: 'Grupa klientów'
+        choose: Wybierz…
+        tracking_codes: 'Numery zamówień i przesyłek'

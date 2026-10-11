@@ -1,0 +1,8 @@
+# Import this file from your application's config/routes:
+#
+# tmonier_sylius_bulk_actions:
+#     resource: "@TmonierSyliusBulkActionsPlugin/config/routes.yaml"
+
+tmonier_bulk_actions_admin:
+    resource: "@TmonierSyliusBulkActionsPlugin/config/routes/admin.yaml"
+    prefix: '/%sylius_admin.path_name%'

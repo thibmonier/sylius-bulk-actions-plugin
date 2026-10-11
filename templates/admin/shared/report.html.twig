@@ -1,0 +1,39 @@
+{# Skipped and failed items of the last bulk action, below the flash messages of the grid. #}
+{% for report in app.flashes('tmonier_bulk_actions_report') %}
+    <div class="container-xl">
+        <div class="card mt-3" {{ sylius_test_html_attribute('tmonier-bulk-actions-report') }}>
+            <div class="card-header">
+                <h3 class="card-title">{{ 'tmonier_bulk_actions.ui.report_details'|trans }}</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table card-table table-vcenter">
+                    <thead>
+                        <tr>
+                            <th>{{ 'tmonier_bulk_actions.ui.item'|trans }}</th>
+                            <th class="w-1">{{ 'tmonier_bulk_actions.ui.status'|trans }}</th>
+                            <th>{{ 'tmonier_bulk_actions.ui.reason'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in report.items %}
+                            <tr {{ sylius_test_html_attribute('tmonier-bulk-actions-report-item', item.status) }}>
+                                <td>{{ item.label }}</td>
+                                <td>
+                                    <span class="badge {{ item.status == 'failed' ? 'bg-red-lt' : 'bg-yellow-lt' }}">
+                                        {{ ('tmonier_bulk_actions.ui.status_' ~ item.status)|trans }}
+                                    </span>
+                                </td>
+                                <td>{{ item.reason|trans(item.parameters, 'flashes') }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if report.more > 0 %}
+                <div class="card-footer text-secondary">
+                    {{ 'tmonier_bulk_actions.ui.more_items'|trans({'%count%': report.more}) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

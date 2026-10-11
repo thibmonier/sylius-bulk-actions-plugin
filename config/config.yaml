@@ -1,0 +1,8 @@
+imports:
+    - { resource: "grids/*.yaml" }
+    - { resource: "twig_hooks/**/*.yaml" }
+
+sylius_grid:
+    templates:
+        bulk_action:
+            tmonier_bulk_actions: '@TmonierSyliusBulkActionsPlugin/admin/grid/bulk_action/bulk_actions.html.twig'

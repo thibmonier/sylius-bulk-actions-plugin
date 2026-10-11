@@ -1,0 +1,26 @@
+tmonier_bulk_actions:
+    flash:
+        report: '%action%: %applied% bijgewerkt, %skipped% overgeslagen, %failed% mislukt.'
+        no_selection: 'Selecteer minstens één item.'
+        too_many_items: '%count% items geselecteerd: een bulkactie verwerkt maximaal %max% items. Selecteer minder items en probeer het opnieuw.'
+        no_tracking_lines: 'Geen geldige regel "ordernummer;trackingcode" gevonden.'
+    skip:
+        transition_not_allowed: 'Niet mogelijk in de huidige status.'
+        stopped_by_listener: 'Geweigerd door de winkelregels.'
+        already_enabled: 'Al ingeschakeld.'
+        already_disabled: 'Al uitgeschakeld.'
+        already_in_taxon: 'Al in deze categorie.'
+        not_in_taxon: 'Niet in deze categorie.'
+        already_in_channels: 'Al in deze kanalen.'
+        not_in_channels: 'Niet in deze kanalen.'
+        missing_channel_pricing: 'De variant %variant% heeft geen prijs in het kanaal %channel%.'
+        no_open_payment: 'Geen betaling om te voltooien.'
+        already_in_group: 'Al in deze groep.'
+        no_group: 'Niet in een groep.'
+        no_account: 'Gastklant zonder winkelaccount.'
+        not_found: 'Niet gevonden (intussen verwijderd?).'
+        not_supported: 'Niet ondersteund door deze actie.'
+        unknown_order: 'Geen bestelling met dit nummer.'
+        no_shipment_to_ship: 'Geen verzendklare zending.'
+    fail:
+        aborted: 'Niet verwerkt: de uitvoering stopte na een databasefout.'

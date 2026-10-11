@@ -1,0 +1,41 @@
+tmonier_bulk_actions:
+    ui:
+        bulk_actions: Massenaktionen
+        report_details: 'Nicht aktualisierte Elemente'
+        item: Element
+        status: Status
+        reason: Grund
+        status_applied: Aktualisiert
+        status_skipped: Übersprungen
+        status_failed: Fehlgeschlagen
+        more_items: 'und %count% weitere'
+        selected_items: '%count% ausgewählte Elemente'
+        confirm: '„%action%“ wird auf die %count% ausgewählten Elemente angewendet. Jedes Element wird einzeln verarbeitet: Elemente, die nicht geändert werden können, werden übersprungen und im Bericht aufgeführt.'
+        apply_to: 'Auf %count% Elemente anwenden'
+        ship_with_tracking_codes: 'Mit Sendungsnummern versenden'
+        tracking_codes_help: 'Eine Zeile pro Sendung: Bestellnummer und Sendungsnummer, getrennt durch „;“, „,“ oder einen Tabulator, z. B. „000000042;1Z999AA10123456784“. Die versandbereiten Sendungen dieser Bestellungen werden mit ihrer eigenen Sendungsnummer versendet und die Kunden erhalten die Versandbestätigung per E-Mail.'
+        ship: Versenden
+    action:
+        product_enable: Aktivieren
+        product_disable: Deaktivieren
+        product_variant_enable: Aktivieren
+        product_variant_disable: Deaktivieren
+        product_add_taxon: 'Einer Kategorie hinzufügen'
+        product_remove_taxon: 'Aus einer Kategorie entfernen'
+        product_add_channels: 'Kanälen hinzufügen'
+        product_remove_channels: 'Aus Kanälen entfernen'
+        order_cancel: Stornieren
+        order_payment_complete: 'Als bezahlt markieren'
+        payment_complete: 'Als bezahlt markieren'
+        shipment_ship: 'Versenden (ohne Sendungsnummer)'
+        customer_assign_group: 'Einer Gruppe zuweisen'
+        customer_remove_group: 'Aus ihrer Gruppe entfernen'
+        customer_enable_account: 'Konto aktivieren'
+        customer_disable_account: 'Konto deaktivieren'
+    form:
+        taxon: Kategorie
+        main_taxon: 'Auch als Hauptkategorie festlegen'
+        channels: Kanäle
+        customer_group: Kundengruppe
+        choose: Auswählen…
+        tracking_codes: 'Bestell- und Sendungsnummern'

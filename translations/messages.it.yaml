@@ -1,0 +1,41 @@
+tmonier_bulk_actions:
+    ui:
+        bulk_actions: 'Azioni di massa'
+        report_details: 'Elementi non aggiornati'
+        item: Elemento
+        status: Stato
+        reason: Motivo
+        status_applied: Aggiornato
+        status_skipped: Saltato
+        status_failed: 'Non riuscito'
+        more_items: 'e altri %count%'
+        selected_items: '%count% elementi selezionati'
+        confirm: '"%action%" verrà applicato ai %count% elementi selezionati. Ogni elemento è elaborato singolarmente: quelli che non possono essere modificati vengono saltati ed elencati nel resoconto.'
+        apply_to: 'Applica a %count% elementi'
+        ship_with_tracking_codes: 'Spedisci con codici di tracciamento'
+        tracking_codes_help: 'Una riga per spedizione: numero d’ordine e codice di tracciamento separati da ";", "," o una tabulazione, ad es. "000000042;1Z999AA10123456784". Le spedizioni pronte di questi ordini vengono spedite con il proprio codice di tracciamento e i clienti ricevono l’e-mail di conferma della spedizione.'
+        ship: Spedisci
+    action:
+        product_enable: Abilita
+        product_disable: Disabilita
+        product_variant_enable: Abilita
+        product_variant_disable: Disabilita
+        product_add_taxon: 'Aggiungi a una categoria'
+        product_remove_taxon: 'Rimuovi da una categoria'
+        product_add_channels: 'Aggiungi ai canali'
+        product_remove_channels: 'Rimuovi dai canali'
+        order_cancel: Annulla
+        order_payment_complete: 'Segna come pagato'
+        payment_complete: 'Segna come pagato'
+        shipment_ship: 'Spedisci (senza codice di tracciamento)'
+        customer_assign_group: 'Assegna a un gruppo'
+        customer_remove_group: 'Rimuovi dal loro gruppo'
+        customer_enable_account: 'Abilita account'
+        customer_disable_account: 'Disabilita account'
+    form:
+        taxon: Categoria
+        main_taxon: 'Impostala anche come categoria principale'
+        channels: Canali
+        customer_group: 'Gruppo di clienti'
+        choose: Scegli…
+        tracking_codes: 'Numeri d’ordine e codici di tracciamento'

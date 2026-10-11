@@ -1,0 +1,15 @@
+tmonier_bulk_actions_admin_prepare:
+    path: /bulk-actions/{code}
+    methods: [POST]
+    requirements:
+        code: '[a-z0-9_]+'
+    defaults:
+        _controller: tmonier_bulk_actions.controller.admin::prepareAction
+
+tmonier_bulk_actions_admin_execute:
+    path: /bulk-actions/{code}/execute
+    methods: [POST]
+    requirements:
+        code: '[a-z0-9_]+'
+    defaults:
+        _controller: tmonier_bulk_actions.controller.admin::executeAction

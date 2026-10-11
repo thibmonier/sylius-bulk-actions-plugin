@@ -1,0 +1,46 @@
+sylius_twig_hooks:
+    hooks:
+        # Skipped / failed items of the last bulk action, below the flash messages of every grid.
+        'sylius_admin.common.index.content':
+            tmonier_bulk_actions_report:
+                template: '@TmonierSyliusBulkActionsPlugin/admin/shared/report.html.twig'
+                priority: 250
+
+        # Confirmation page of a bulk action.
+        'tmonier_bulk_actions.admin.confirm':
+            sidebar:
+                template: '@SyliusAdmin/shared/crud/common/sidebar.html.twig'
+                priority: 200
+            navbar:
+                template: '@SyliusAdmin/shared/crud/common/navbar.html.twig'
+                priority: 100
+            content:
+                template: '@SyliusAdmin/shared/crud/common/content.html.twig'
+                priority: 0
+
+        'tmonier_bulk_actions.admin.confirm.content':
+            flashes:
+                template: '@SyliusAdmin/shared/crud/common/content/flashes.html.twig'
+                priority: 200
+            header:
+                template: '@SyliusAdmin/shared/crud/common/content/header.html.twig'
+                priority: 100
+            sections:
+                template: '@TmonierSyliusBulkActionsPlugin/admin/bulk_action/confirm/sections.html.twig'
+                priority: 0
+
+        'tmonier_bulk_actions.admin.confirm.content.header':
+            breadcrumbs:
+                template: '@TmonierSyliusBulkActionsPlugin/admin/bulk_action/confirm/breadcrumbs.html.twig'
+                priority: 100
+            title_block:
+                template: '@SyliusAdmin/shared/crud/common/content/header/title_block.html.twig'
+                priority: 0
+
+        'tmonier_bulk_actions.admin.confirm.content.header.title_block':
+            title:
+                template: '@TmonierSyliusBulkActionsPlugin/admin/bulk_action/confirm/title.html.twig'
+                priority: 100
+            actions:
+                template: '@TmonierSyliusBulkActionsPlugin/admin/bulk_action/confirm/actions.html.twig'
+                priority: 0

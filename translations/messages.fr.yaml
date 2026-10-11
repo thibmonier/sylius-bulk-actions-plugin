@@ -1,0 +1,41 @@
+tmonier_bulk_actions:
+    ui:
+        bulk_actions: 'Actions groupées'
+        report_details: 'Éléments non modifiés'
+        item: Élément
+        status: Statut
+        reason: Raison
+        status_applied: Modifié
+        status_skipped: Ignoré
+        status_failed: Échec
+        more_items: 'et %count% de plus'
+        selected_items: '%count% éléments sélectionnés'
+        confirm: '« %action% » va être appliqué aux %count% éléments sélectionnés. Chaque élément est traité séparément : ceux qui ne peuvent pas être modifiés sont ignorés et listés dans le rapport.'
+        apply_to: 'Appliquer à %count% éléments'
+        ship_with_tracking_codes: 'Expédier avec numéros de suivi'
+        tracking_codes_help: 'Une ligne par expédition : numéro de commande et numéro de suivi séparés par « ; », « , » ou une tabulation, par exemple « 000000042;1Z999AA10123456784 ». Les expéditions prêtes de ces commandes sont expédiées avec leur propre numéro de suivi et les clients reçoivent l’e-mail de confirmation d’expédition.'
+        ship: Expédier
+    action:
+        product_enable: Activer
+        product_disable: Désactiver
+        product_variant_enable: Activer
+        product_variant_disable: Désactiver
+        product_add_taxon: 'Ajouter à une catégorie'
+        product_remove_taxon: 'Retirer d’une catégorie'
+        product_add_channels: 'Ajouter à des canaux'
+        product_remove_channels: 'Retirer de canaux'
+        order_cancel: Annuler
+        order_payment_complete: 'Marquer comme payée'
+        payment_complete: 'Marquer comme payé'
+        shipment_ship: 'Expédier (sans numéro de suivi)'
+        customer_assign_group: 'Affecter à un groupe'
+        customer_remove_group: 'Retirer de leur groupe'
+        customer_enable_account: 'Activer le compte'
+        customer_disable_account: 'Désactiver le compte'
+    form:
+        taxon: Catégorie
+        main_taxon: 'La définir aussi comme catégorie principale'
+        channels: Canaux
+        customer_group: 'Groupe de clients'
+        choose: Choisir…
+        tracking_codes: 'Numéros de commande et de suivi'

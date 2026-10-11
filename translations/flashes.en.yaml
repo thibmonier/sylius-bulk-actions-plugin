@@ -1,0 +1,26 @@
+tmonier_bulk_actions:
+    flash:
+        report: '%action%: %applied% updated, %skipped% skipped, %failed% failed.'
+        no_selection: 'Select at least one item.'
+        too_many_items: '%count% items selected: a bulk action processes %max% items at most. Select fewer items and try again.'
+        no_tracking_lines: 'No valid line "order number;tracking code" found.'
+    skip:
+        transition_not_allowed: 'Not possible in the current state.'
+        stopped_by_listener: 'Refused by the shop rules.'
+        already_enabled: 'Already enabled.'
+        already_disabled: 'Already disabled.'
+        already_in_taxon: 'Already in this taxon.'
+        not_in_taxon: 'Not in this taxon.'
+        already_in_channels: 'Already in these channels.'
+        not_in_channels: 'Not in these channels.'
+        missing_channel_pricing: 'The variant %variant% has no price in the channel %channel%.'
+        no_open_payment: 'No payment to complete.'
+        already_in_group: 'Already in this group.'
+        no_group: 'Not in a group.'
+        no_account: 'Guest customer without a shop account.'
+        not_found: 'Not found (deleted meanwhile?).'
+        not_supported: 'Not supported by this action.'
+        unknown_order: 'No order with this number.'
+        no_shipment_to_ship: 'No shipment ready to ship.'
+    fail:
+        aborted: 'Not processed: the run stopped after a database error.'

@@ -1,0 +1,10 @@
+sylius_grid:
+    grids:
+        sylius_admin_product:
+            actions:
+                bulk:
+                    tmonier_bulk_actions:
+                        type: tmonier_bulk_actions
+                        label: tmonier_bulk_actions.ui.bulk_actions
+                        options:
+                            resource: sylius.product

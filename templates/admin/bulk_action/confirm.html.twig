@@ -1,0 +1,7 @@
+{% extends '@SyliusAdmin/shared/layout/base.html.twig' %}
+
+{% block title %}{{ action.label|trans }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% hook 'tmonier_bulk_actions.admin.confirm' with { action, form, count, preview, redirect } %}
+{% endblock %}

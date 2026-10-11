@@ -1,0 +1,26 @@
+tmonier_bulk_actions:
+    flash:
+        report: '%action%: %applied% aggiornati, %skipped% saltati, %failed% non riusciti.'
+        no_selection: 'Seleziona almeno un elemento.'
+        too_many_items: '%count% elementi selezionati: un’azione di massa elabora al massimo %max% elementi. Seleziona meno elementi e riprova.'
+        no_tracking_lines: 'Nessuna riga valida "numero d’ordine;codice di tracciamento" trovata.'
+    skip:
+        transition_not_allowed: 'Non possibile nello stato attuale.'
+        stopped_by_listener: 'Rifiutato dalle regole del negozio.'
+        already_enabled: 'Già abilitato.'
+        already_disabled: 'Già disabilitato.'
+        already_in_taxon: 'Già in questa categoria.'
+        not_in_taxon: 'Non in questa categoria.'
+        already_in_channels: 'Già in questi canali.'
+        not_in_channels: 'Non in questi canali.'
+        missing_channel_pricing: 'La variante %variant% non ha un prezzo nel canale %channel%.'
+        no_open_payment: 'Nessun pagamento da completare.'
+        already_in_group: 'Già in questo gruppo.'
+        no_group: 'Non appartiene a nessun gruppo.'
+        no_account: 'Cliente ospite senza account del negozio.'
+        not_found: 'Non trovato (eliminato nel frattempo?).'
+        not_supported: 'Non supportato da questa azione.'
+        unknown_order: 'Nessun ordine con questo numero.'
+        no_shipment_to_ship: 'Nessuna spedizione pronta.'
+    fail:
+        aborted: 'Non elaborato: l’esecuzione si è interrotta dopo un errore del database.'

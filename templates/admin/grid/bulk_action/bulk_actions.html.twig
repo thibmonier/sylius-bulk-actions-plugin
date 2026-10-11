@@ -1,0 +1,26 @@
+{#
+    Grid bulk action "tmonier_bulk_actions": a dropdown with every enabled bulk action of the
+    resource given in options.resource (options.actions restricts it to some codes).
+    The forms reuse the "data-bulk-delete" script of the Sylius admin, which copies the checked
+    rows into "ids[]" inputs on submit.
+#}
+{% set bulk_actions = tmonier_bulk_actions(action.options.resource, action.options.actions|default(null)) %}
+
+{% if bulk_actions is not empty %}
+    <div class="dropdown d-inline-block" {{ sylius_test_html_attribute('tmonier-bulk-actions') }}>
+        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-check-all-action="index" disabled>
+            {{ ux_icon('tabler:checklist', {'class': 'icon'}) }}
+            {{ action.label|default('tmonier_bulk_actions.ui.bulk_actions')|trans }}
+        </button>
+        <div class="dropdown-menu">
+            {% for bulk_action in bulk_actions %}
+                <form method="post" action="{{ path('tmonier_bulk_actions_admin_prepare', {'code': bulk_action.code}) }}" data-bulk-delete="index" class="m-0">
+                    <button type="submit" class="dropdown-item" {{ sylius_test_html_attribute('tmonier-bulk-action', bulk_action.code) }}>
+                        {{ ux_icon(bulk_action.icon, {'class': 'icon dropdown-item-icon'}) }}
+                        {{ bulk_action.label|trans }}
+                    </button>
+                </form>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

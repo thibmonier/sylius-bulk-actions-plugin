@@ -1,0 +1,41 @@
+tmonier_bulk_actions:
+    ui:
+        bulk_actions: 'Bulk actions'
+        report_details: 'Items not updated'
+        item: Item
+        status: Status
+        reason: Reason
+        status_applied: Updated
+        status_skipped: Skipped
+        status_failed: Failed
+        more_items: 'and %count% more'
+        selected_items: '%count% selected items'
+        confirm: '"%action%" will be applied to the %count% selected items. Every item is processed on its own: the items that cannot be changed are skipped and listed in the report.'
+        apply_to: 'Apply to %count% items'
+        ship_with_tracking_codes: 'Ship with tracking codes'
+        tracking_codes_help: 'One line per shipment: order number and tracking code separated by ";", "," or a tab, e.g. "000000042;1Z999AA10123456784". The shipments of these orders that are ready to ship are shipped with their own tracking code and the customers receive the shipment confirmation e-mail.'
+        ship: Ship
+    action:
+        product_enable: Enable
+        product_disable: Disable
+        product_variant_enable: Enable
+        product_variant_disable: Disable
+        product_add_taxon: 'Add to a taxon'
+        product_remove_taxon: 'Remove from a taxon'
+        product_add_channels: 'Add to channels'
+        product_remove_channels: 'Remove from channels'
+        order_cancel: Cancel
+        order_payment_complete: 'Mark as paid'
+        payment_complete: 'Mark as paid'
+        shipment_ship: 'Ship (without tracking code)'
+        customer_assign_group: 'Assign to a group'
+        customer_remove_group: 'Remove from their group'
+        customer_enable_account: 'Enable account'
+        customer_disable_account: 'Disable account'
+    form:
+        taxon: Taxon
+        main_taxon: 'Also set it as the main taxon'
+        channels: Channels
+        customer_group: 'Customer group'
+        choose: Choose…
+        tracking_codes: 'Order numbers and tracking codes'
