@@ -44,7 +44,7 @@ final class AddProductsToChannelsAction implements BulkActionInterface
         return 'tabler:building-store';
     }
 
-    public function getFormType(): ?string
+    public function getFormType(): string
     {
         return ProductChannelsType::class;
     }

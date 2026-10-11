@@ -10,7 +10,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Count;
 
-/** @extends AbstractType<array<string, mixed>> */
 final class ProductChannelsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

@@ -39,7 +39,7 @@ final class AssignCustomerGroupAction implements BulkActionInterface
         return 'tabler:users-plus';
     }
 
-    public function getFormType(): ?string
+    public function getFormType(): string
     {
         return AssignCustomerGroupType::class;
     }

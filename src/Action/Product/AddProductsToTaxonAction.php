@@ -43,7 +43,7 @@ final class AddProductsToTaxonAction implements BulkActionInterface
         return 'tabler:folder-plus';
     }
 
-    public function getFormType(): ?string
+    public function getFormType(): string
     {
         return AddProductsToTaxonType::class;
     }

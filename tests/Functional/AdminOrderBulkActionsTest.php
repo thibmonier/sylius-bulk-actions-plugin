@@ -10,7 +10,6 @@ use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\OrderPaymentStates;
 use Sylius\Component\Order\OrderTransitions;
-use Sylius\Component\Payment\PaymentTransitions;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /** Bulk actions applying state machine transitions: orders, payments, shipments. */

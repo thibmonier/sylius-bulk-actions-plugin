@@ -39,7 +39,7 @@ final class RemoveProductsFromTaxonAction implements BulkActionInterface
         return 'tabler:folder-minus';
     }
 
-    public function getFormType(): ?string
+    public function getFormType(): string
     {
         return RemoveProductsFromTaxonType::class;
     }

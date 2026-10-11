@@ -187,8 +187,6 @@ final class BulkActionController extends AbstractController
     }
 
     /**
-     * @param mixed $values
-     *
      * @return list<int>
      */
     private function idsFromList(mixed $values): array

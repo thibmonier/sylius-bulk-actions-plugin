@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tmonier\SyliusBulkActionsPlugin\Action;
 
+use Symfony\Component\Form\FormTypeInterface;
+
 /**
  * A bulk action of the admin grids. Services implementing this interface are registered
  * automatically (autoconfiguration) or with the "tmonier_bulk_actions.action" tag.
@@ -29,7 +31,7 @@ interface BulkActionInterface
     /**
      * Form type asking the data given to execute(), null when the action needs no input.
      *
-     * @return class-string<\Symfony\Component\Form\FormTypeInterface<mixed>>|null
+     * @return class-string<FormTypeInterface>|null
      */
     public function getFormType(): ?string;
 

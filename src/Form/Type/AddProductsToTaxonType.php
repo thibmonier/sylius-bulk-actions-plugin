@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-/** @extends AbstractType<array<string, mixed>> */
 final class AddProductsToTaxonType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

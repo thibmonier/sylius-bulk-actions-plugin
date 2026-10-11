@@ -62,7 +62,8 @@ final class ShipShipmentAction implements BulkActionInterface
         Assert::isInstanceOf($item, ShipmentInterface::class);
 
         $trackingCodes = $data[self::TRACKING_CODES] ?? [];
-        $trackingCode = is_array($trackingCodes) ? ($trackingCodes[$item->getId()] ?? null) : null;
+        $id = $item->getId();
+        $trackingCode = is_array($trackingCodes) && (is_int($id) || is_string($id)) ? ($trackingCodes[$id] ?? null) : null;
 
         return $this->transitionApplier->apply(
             $item,

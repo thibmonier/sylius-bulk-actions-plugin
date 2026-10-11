@@ -7,13 +7,12 @@ namespace Tmonier\SyliusBulkActionsPlugin\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Confirmation form of a bulk action: the selected ids, the page to go back to and, under
  * "data", the form type of the action. CSRF protected.
- *
- * @extends AbstractType<array<string, mixed>>
  */
 final class BulkActionType extends AbstractType
 {
@@ -26,7 +25,7 @@ final class BulkActionType extends AbstractType
             ->add('redirect', HiddenType::class)
         ;
 
-        /** @var string|null $dataType */
+        /** @var class-string<FormTypeInterface>|null $dataType */
         $dataType = $options['data_type'];
         if (null !== $dataType) {
             $builder->add('data', $dataType, ['label' => false]);

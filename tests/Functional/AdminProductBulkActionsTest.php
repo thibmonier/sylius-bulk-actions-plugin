@@ -68,7 +68,7 @@ final class AdminProductBulkActionsTest extends WebTestCase
         $this->entityManager()->flush();
 
         $crawler = $this->runBulkAction('product_add_taxon', [$this->idOf($outside), $this->idOf($inside)], [
-            'taxon' => (string) $taxon->getId(),
+            'taxon' => (string) $this->idOf($taxon),
             'main_taxon' => '1',
         ], '/admin/products/');
 
@@ -94,7 +94,7 @@ final class AdminProductBulkActionsTest extends WebTestCase
         $this->entityManager()->flush();
 
         $crawler = $this->runBulkAction('product_remove_taxon', [$this->idOf($inside), $this->idOf($outside)], [
-            'taxon' => (string) $taxon->getId(),
+            'taxon' => (string) $this->idOf($taxon),
         ], '/admin/products/');
 
         self::assertSame(['Remove from a taxon: 1 updated, 1 skipped, 0 failed.'], $this->flashes($crawler));
