@@ -15,11 +15,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tmonier\SyliusBulkActionsPlugin\Action\BulkActionInterface;
 use Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult;
+use Tmonier\SyliusBulkActionsPlugin\Action\Shipment\ShipShipmentAction;
 use Tmonier\SyliusBulkActionsPlugin\Form\Type\BulkActionType;
+use Tmonier\SyliusBulkActionsPlugin\Form\Type\ShipWithTrackingCodesType;
 use Tmonier\SyliusBulkActionsPlugin\Processor\BulkActionProcessorInterface;
 use Tmonier\SyliusBulkActionsPlugin\Processor\TooManyItemsException;
 use Tmonier\SyliusBulkActionsPlugin\Registry\BulkActionRegistryInterface;
 use Tmonier\SyliusBulkActionsPlugin\Report\BulkActionReport;
+use Tmonier\SyliusBulkActionsPlugin\Shipment\TrackingCodeShipper;
 
 /**
  * Grid selection (POST ids[]) -> confirmation page with the form of the action -> execution,
@@ -40,6 +43,7 @@ final class BulkActionController extends AbstractController
         private readonly BulkActionProcessorInterface $processor,
         private readonly TranslatorInterface $translator,
         private readonly FormFactoryInterface $formFactory,
+        private readonly TrackingCodeShipper $trackingCodeShipper,
     ) {
     }
 
@@ -93,9 +97,42 @@ final class BulkActionController extends AbstractController
             return $this->tooManyItems($redirect, $exception->count);
         }
 
-        $this->flashReport($request, $action, $report);
+        $this->flashReport($request, $action->getLabel(), $report);
 
         return new RedirectResponse($redirect);
+    }
+
+    /** Pasted "order number;tracking code" lines: one tracking code per shipment. */
+    public function shipWithTrackingCodesAction(Request $request): Response
+    {
+        $action = $this->getAction(ShipShipmentAction::CODE);
+        $redirect = $this->generateUrl('sylius_admin_shipment_index');
+
+        $form = $this->formFactory->createNamed('tmonier_bulk_actions_tracking', ShipWithTrackingCodesType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var array{lines: string} $data */
+            $data = $form->getData();
+
+            try {
+                $report = $this->trackingCodeShipper->ship($action, $data['lines']);
+            } catch (TooManyItemsException $exception) {
+                return $this->tooManyItems($redirect, $exception->count);
+            }
+
+            if (null !== $report) {
+                $this->flashReport($request, 'tmonier_bulk_actions.ui.ship_with_tracking_codes', $report);
+
+                return new RedirectResponse($redirect);
+            }
+
+            $this->addFlash('error', 'tmonier_bulk_actions.flash.no_tracking_lines');
+        }
+
+        return $this->render('@TmonierSyliusBulkActionsPlugin/admin/shipment/ship_with_tracking_codes.html.twig', [
+            'form' => $form->createView(),
+            'redirect' => $redirect,
+        ], new Response(null, $form->isSubmitted() ? Response::HTTP_UNPROCESSABLE_ENTITY : Response::HTTP_OK));
     }
 
     private function getAction(string $code): BulkActionInterface
@@ -141,7 +178,7 @@ final class BulkActionController extends AbstractController
         return new RedirectResponse($redirect);
     }
 
-    private function flashReport(Request $request, BulkActionInterface $action, BulkActionReport $report): void
+    private function flashReport(Request $request, string $label, BulkActionReport $report): void
     {
         $type = 'success';
         if ($report->countSkipped() > 0) {
@@ -154,7 +191,7 @@ final class BulkActionController extends AbstractController
         $this->addFlash($type, [
             'message' => 'tmonier_bulk_actions.flash.report',
             'parameters' => [
-                '%action%' => $this->translator->trans($action->getLabel()),
+                '%action%' => $this->translator->trans($label),
                 '%applied%' => $report->countApplied(),
                 '%skipped%' => $report->countSkipped(),
                 '%failed%' => $report->countFailed(),

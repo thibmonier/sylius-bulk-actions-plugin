@@ -1,0 +1,7 @@
+{% extends '@SyliusAdmin/shared/layout/base.html.twig' %}
+
+{% block title %}{{ 'tmonier_bulk_actions.ui.ship_with_tracking_codes'|trans }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% hook 'tmonier_bulk_actions.admin.ship_with_tracking_codes' with { form, redirect } %}
+{% endblock %}

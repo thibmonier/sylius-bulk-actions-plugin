@@ -1,3 +1,9 @@
+tmonier_bulk_actions_admin_ship_with_tracking_codes:
+    path: /bulk-actions/shipments/ship-with-tracking-codes
+    methods: [GET, POST]
+    defaults:
+        _controller: tmonier_bulk_actions.controller.admin::shipWithTrackingCodesAction
+
 tmonier_bulk_actions_admin_prepare:
     path: /bulk-actions/{code}
     methods: [POST]

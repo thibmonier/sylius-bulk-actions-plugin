@@ -1,0 +1,6 @@
+{% if tmonier_bulk_actions('sylius.shipment', 'shipment_ship') is not empty %}
+    <a class="btn" href="{{ path('tmonier_bulk_actions_admin_ship_with_tracking_codes') }}" {{ sylius_test_html_attribute('tmonier-ship-with-tracking-codes') }}>
+        {{ ux_icon('tabler:file-import', {'class': 'icon'}) }}
+        {{ 'tmonier_bulk_actions.ui.ship_with_tracking_codes'|trans }}
+    </a>
+{% endif %}

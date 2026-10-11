@@ -1,0 +1,22 @@
+{% set form = hookable_metadata.context.form %}
+
+<div class="page-body">
+    <div class="container-xl">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="card" {{ sylius_test_html_attribute('tmonier-ship-with-tracking-codes-form') }}>
+            <div class="card-body">
+                {{ form_errors(form) }}
+                {{ form_row(form.lines) }}
+                {{ form_rest(form) }}
+            </div>
+            <div class="card-footer d-flex gap-2 justify-content-end">
+                <a class="btn" href="{{ hookable_metadata.context.redirect }}">{{ 'sylius.ui.cancel'|trans }}</a>
+                <button type="submit" class="btn btn-primary" {{ sylius_test_html_attribute('tmonier-ship-with-tracking-codes-submit') }}>
+                    {{ ux_icon('tabler:truck-delivery', {'class': 'icon'}) }}
+                    {{ 'tmonier_bulk_actions.ui.ship'|trans }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

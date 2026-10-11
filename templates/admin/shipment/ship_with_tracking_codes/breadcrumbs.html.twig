@@ -1,0 +1,7 @@
+{% from '@SyliusAdmin/shared/helper/breadcrumbs.html.twig' import breadcrumbs %}
+
+{{ breadcrumbs([
+    { name: 'sylius.ui.dashboard', url: path('sylius_admin_dashboard'), active: false },
+    { name: 'sylius.ui.shipments', url: path('sylius_admin_shipment_index'), active: false },
+    { name: 'tmonier_bulk_actions.ui.ship_with_tracking_codes', active: true },
+]) }}

@@ -24,6 +24,7 @@ use Tmonier\SyliusBulkActionsPlugin\Form\Type\AssignCustomerGroupType;
 use Tmonier\SyliusBulkActionsPlugin\Form\Type\BulkActionType;
 use Tmonier\SyliusBulkActionsPlugin\Form\Type\ProductChannelsType;
 use Tmonier\SyliusBulkActionsPlugin\Form\Type\RemoveProductsFromTaxonType;
+use Tmonier\SyliusBulkActionsPlugin\Form\Type\ShipWithTrackingCodesType;
 use Tmonier\SyliusBulkActionsPlugin\Processor\BulkActionProcessor;
 use Tmonier\SyliusBulkActionsPlugin\Processor\BulkActionProcessorInterface;
 use Tmonier\SyliusBulkActionsPlugin\Processor\ItemLabeler;
@@ -32,6 +33,8 @@ use Tmonier\SyliusBulkActionsPlugin\Registry\BulkActionRegistry;
 use Tmonier\SyliusBulkActionsPlugin\Registry\BulkActionRegistryInterface;
 use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcher;
 use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
+use Tmonier\SyliusBulkActionsPlugin\Shipment\TrackingCodeParser;
+use Tmonier\SyliusBulkActionsPlugin\Shipment\TrackingCodeShipper;
 use Tmonier\SyliusBulkActionsPlugin\StateMachine\TransitionApplier;
 use Tmonier\SyliusBulkActionsPlugin\StateMachine\TransitionApplierInterface;
 use Tmonier\SyliusBulkActionsPlugin\Twig\BulkActionsExtension;
@@ -143,6 +146,17 @@ return static function (ContainerConfigurator $container): void {
         ->tag($tag)
     ;
 
+    $services->set('tmonier_bulk_actions.tracking_code_parser', TrackingCodeParser::class);
+    $services
+        ->set('tmonier_bulk_actions.tracking_code_shipper', TrackingCodeShipper::class)
+        ->args([
+            service('sylius.repository.order'),
+            service('tmonier_bulk_actions.processor'),
+            service('tmonier_bulk_actions.tracking_code_parser'),
+        ])
+    ;
+    $services->alias(TrackingCodeShipper::class, 'tmonier_bulk_actions.tracking_code_shipper');
+
     // Customers
     $services
         ->set('tmonier_bulk_actions.action.customer_assign_group', AssignCustomerGroupAction::class)
@@ -163,7 +177,7 @@ return static function (ContainerConfigurator $container): void {
     }
 
     // Forms
-    foreach ([BulkActionType::class, AddProductsToTaxonType::class, RemoveProductsFromTaxonType::class, ProductChannelsType::class, AssignCustomerGroupType::class] as $formType) {
+    foreach ([BulkActionType::class, AddProductsToTaxonType::class, RemoveProductsFromTaxonType::class, ProductChannelsType::class, AssignCustomerGroupType::class, ShipWithTrackingCodesType::class] as $formType) {
         $services->set($formType)->tag('form.type');
     }
 
@@ -175,6 +189,7 @@ return static function (ContainerConfigurator $container): void {
             service('tmonier_bulk_actions.processor'),
             service('translator'),
             service('form.factory'),
+            service('tmonier_bulk_actions.tracking_code_shipper'),
         ])
         ->call('setContainer', [service(\Psr\Container\ContainerInterface::class)])
         ->tag('controller.service_arguments')
