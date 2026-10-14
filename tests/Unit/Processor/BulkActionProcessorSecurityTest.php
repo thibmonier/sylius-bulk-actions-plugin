@@ -37,8 +37,8 @@ final class BulkActionProcessorSecurityTest extends TestCase
         self::assertSame(1, $report->countFailed());
         $reason = $report->getItems(BulkActionResult::FAILED)[0]->getResult()->getReason();
         self::assertSame('tmonier_bulk_actions.fail.unexpected_error', $reason);
-        self::assertStringNotContainsString('internal detail 42', (string) $reason);
-        self::assertStringNotContainsString('SQLSTATE', (string) $reason);
+        self::assertStringNotContainsString('internal detail 42', $reason);
+        self::assertStringNotContainsString('SQLSTATE', $reason);
     }
 
     public function testActionExceptionIsLogged(): void
@@ -73,8 +73,8 @@ final class BulkActionProcessorSecurityTest extends TestCase
         self::assertSame(1, $report->countFailed());
         $reason = $report->getItems(BulkActionResult::FAILED)[0]->getResult()->getReason();
         self::assertSame('tmonier_bulk_actions.fail.flush_error', $reason);
-        self::assertStringNotContainsString('internal detail 42', (string) $reason);
-        self::assertStringNotContainsString('SQLSTATE', (string) $reason);
+        self::assertStringNotContainsString('internal detail 42', $reason);
+        self::assertStringNotContainsString('SQLSTATE', $reason);
     }
 
     public function testFlushExceptionIsLogged(): void

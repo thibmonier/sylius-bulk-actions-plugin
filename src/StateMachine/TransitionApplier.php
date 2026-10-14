@@ -8,11 +8,11 @@ use Sylius\Abstraction\StateMachine\StateMachineInterface;
 use Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult;
 use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 
-final class TransitionApplier implements TransitionApplierInterface
+final readonly class TransitionApplier implements TransitionApplierInterface
 {
     public function __construct(
-        private readonly StateMachineInterface $stateMachine,
-        private readonly ResourceEventDispatcherInterface $resourceEventDispatcher,
+        private StateMachineInterface $stateMachine,
+        private ResourceEventDispatcherInterface $resourceEventDispatcher,
     ) {
     }
 
@@ -29,11 +29,11 @@ final class TransitionApplier implements TransitionApplierInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent($resource, $event, $subject);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 
-        if (null !== $beforeApply) {
+        if ($beforeApply instanceof \Closure) {
             $beforeApply($subject);
         }
 

@@ -83,7 +83,7 @@ trait BulkActionsTestTrait
     /** @param list<int> $ids */
     private function openConfirmation(string $code, array $ids, string $gridUrl = '/admin/'): Crawler
     {
-        return $this->client->request('POST', sprintf('/admin/bulk-actions/%s', $code), ['ids' => array_map('strval', $ids)], [], [
+        return $this->client->request('POST', sprintf('/admin/bulk-actions/%s', $code), ['ids' => array_map(strval(...), $ids)], [], [
             'HTTP_REFERER' => 'http://localhost' . $gridUrl,
         ]);
     }

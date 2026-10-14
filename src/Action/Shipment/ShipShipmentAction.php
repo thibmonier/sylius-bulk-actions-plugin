@@ -17,13 +17,13 @@ use Webmozart\Assert\Assert;
  * $data[self::TRACKING_CODES][shipment id]. The shipment confirmation e-mail is sent by the
  * "sylius.shipment.post_ship" event, like the single "Ship" button.
  */
-final class ShipShipmentAction implements BulkActionInterface
+final readonly class ShipShipmentAction implements BulkActionInterface
 {
     public const CODE = 'shipment_ship';
 
     public const TRACKING_CODES = 'tracking_codes';
 
-    public function __construct(private readonly TransitionApplierInterface $transitionApplier)
+    public function __construct(private TransitionApplierInterface $transitionApplier)
     {
     }
 

@@ -23,16 +23,16 @@ use Tmonier\SyliusBulkActionsPlugin\Report\BulkActionReportItem;
  * error during a flush fails its batch and stops the run, because the entity manager can no
  * longer be trusted.
  */
-final class BulkActionProcessor implements BulkActionProcessorInterface
+final readonly class BulkActionProcessor implements BulkActionProcessorInterface
 {
     public function __construct(
-        private readonly RegistryInterface $resourceRegistry,
-        private readonly ManagerRegistry $managerRegistry,
-        private readonly EventDispatcherInterface $eventDispatcher,
-        private readonly ItemLabelerInterface $itemLabeler,
-        private readonly LoggerInterface $logger,
-        private readonly int $maxItems,
-        private readonly int $batchSize,
+        private RegistryInterface $resourceRegistry,
+        private ManagerRegistry $managerRegistry,
+        private EventDispatcherInterface $eventDispatcher,
+        private ItemLabelerInterface $itemLabeler,
+        private LoggerInterface $logger,
+        private int $maxItems,
+        private int $batchSize,
     ) {
     }
 
@@ -132,7 +132,7 @@ final class BulkActionProcessor implements BulkActionProcessorInterface
         /** @var class-string $class */
         $class = $this->resourceRegistry->get($action->getResource())->getClass('model');
         $manager = $this->managerRegistry->getManagerForClass($class);
-        if (null === $manager) {
+        if (!$manager instanceof \Doctrine\Persistence\ObjectManager) {
             throw new \LogicException(sprintf('No Doctrine manager for "%s".', $class));
         }
 
@@ -165,7 +165,7 @@ final class BulkActionProcessor implements BulkActionProcessorInterface
     private function runAfterFlush(BulkActionInterface $action, BulkActionReportItem $reportItem): void
     {
         $callback = $reportItem->getResult()->getAfterFlush();
-        if (null === $callback) {
+        if (!$callback instanceof \Closure) {
             return;
         }
 

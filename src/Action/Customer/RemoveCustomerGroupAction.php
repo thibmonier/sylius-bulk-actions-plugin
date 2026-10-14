@@ -11,9 +11,9 @@ use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 use Webmozart\Assert\Assert;
 
 /** Removes customers from their group. */
-final class RemoveCustomerGroupAction implements BulkActionInterface
+final readonly class RemoveCustomerGroupAction implements BulkActionInterface
 {
-    public function __construct(private readonly ResourceEventDispatcherInterface $resourceEventDispatcher)
+    public function __construct(private ResourceEventDispatcherInterface $resourceEventDispatcher)
     {
     }
 
@@ -51,12 +51,12 @@ final class RemoveCustomerGroupAction implements BulkActionInterface
     {
         Assert::isInstanceOf($item, CustomerInterface::class);
 
-        if (null === $item->getGroup()) {
+        if (!$item->getGroup() instanceof \Sylius\Component\Customer\Model\CustomerGroupInterface) {
             return BulkActionResult::skipped('tmonier_bulk_actions.skip.no_group');
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.customer', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

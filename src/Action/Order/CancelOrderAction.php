@@ -12,9 +12,9 @@ use Tmonier\SyliusBulkActionsPlugin\StateMachine\TransitionApplierInterface;
 use Webmozart\Assert\Assert;
 
 /** Cancels orders through the "sylius_order" state machine (payments, shipments and stock follow). */
-final class CancelOrderAction implements BulkActionInterface
+final readonly class CancelOrderAction implements BulkActionInterface
 {
-    public function __construct(private readonly TransitionApplierInterface $transitionApplier)
+    public function __construct(private TransitionApplierInterface $transitionApplier)
     {
     }
 

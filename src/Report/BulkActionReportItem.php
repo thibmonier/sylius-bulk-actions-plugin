@@ -6,12 +6,12 @@ namespace Tmonier\SyliusBulkActionsPlugin\Report;
 
 use Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult;
 
-final class BulkActionReportItem
+final readonly class BulkActionReportItem
 {
     public function __construct(
-        private readonly int|string $id,
-        private readonly string $label,
-        private readonly BulkActionResult $result,
+        private int|string $id,
+        private string $label,
+        private BulkActionResult $result,
     ) {
     }
 

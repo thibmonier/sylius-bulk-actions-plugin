@@ -13,9 +13,9 @@ use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 use Webmozart\Assert\Assert;
 
 /** Puts customers in a group (a Sylius customer belongs to one group at most). */
-final class AssignCustomerGroupAction implements BulkActionInterface
+final readonly class AssignCustomerGroupAction implements BulkActionInterface
 {
-    public function __construct(private readonly ResourceEventDispatcherInterface $resourceEventDispatcher)
+    public function __construct(private ResourceEventDispatcherInterface $resourceEventDispatcher)
     {
     }
 
@@ -60,7 +60,7 @@ final class AssignCustomerGroupAction implements BulkActionInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.customer', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

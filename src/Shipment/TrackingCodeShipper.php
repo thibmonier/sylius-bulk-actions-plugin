@@ -19,13 +19,13 @@ use Tmonier\SyliusBulkActionsPlugin\Report\BulkActionReportItem;
  * code, through the "shipment_ship" bulk action (same checks, events and e-mails). One line ships
  * one shipment ready to ship of the order; give several lines for an order with several shipments.
  */
-final class TrackingCodeShipper
+final readonly class TrackingCodeShipper
 {
     /** @param OrderRepositoryInterface<OrderInterface> $orderRepository */
     public function __construct(
-        private readonly OrderRepositoryInterface $orderRepository,
-        private readonly BulkActionProcessorInterface $processor,
-        private readonly TrackingCodeParser $parser,
+        private OrderRepositoryInterface $orderRepository,
+        private BulkActionProcessorInterface $processor,
+        private TrackingCodeParser $parser,
     ) {
     }
 

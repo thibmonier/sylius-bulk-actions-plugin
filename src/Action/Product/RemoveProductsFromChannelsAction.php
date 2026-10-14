@@ -12,9 +12,9 @@ use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 use Webmozart\Assert\Assert;
 
 /** Removes the products from channels (channel pricings are kept, like the product form does). */
-final class RemoveProductsFromChannelsAction implements BulkActionInterface
+final readonly class RemoveProductsFromChannelsAction implements BulkActionInterface
 {
-    public function __construct(private readonly ResourceEventDispatcherInterface $resourceEventDispatcher)
+    public function __construct(private ResourceEventDispatcherInterface $resourceEventDispatcher)
     {
     }
 
@@ -63,7 +63,7 @@ final class RemoveProductsFromChannelsAction implements BulkActionInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.product', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

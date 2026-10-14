@@ -12,9 +12,9 @@ use Tmonier\SyliusBulkActionsPlugin\StateMachine\TransitionApplierInterface;
 use Webmozart\Assert\Assert;
 
 /** Marks payments as paid ("complete" transition, like the "Complete" button of the payment grid). */
-final class CompletePaymentAction implements BulkActionInterface
+final readonly class CompletePaymentAction implements BulkActionInterface
 {
-    public function __construct(private readonly TransitionApplierInterface $transitionApplier)
+    public function __construct(private TransitionApplierInterface $transitionApplier)
     {
     }
 

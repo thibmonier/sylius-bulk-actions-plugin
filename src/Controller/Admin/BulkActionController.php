@@ -120,7 +120,7 @@ final class BulkActionController extends AbstractController
                 return $this->tooManyItems($redirect, $exception->count);
             }
 
-            if (null !== $report) {
+            if ($report instanceof \Tmonier\SyliusBulkActionsPlugin\Report\BulkActionReport) {
                 $this->flashReport($request, 'tmonier_bulk_actions.ui.ship_with_tracking_codes', $report);
 
                 return new RedirectResponse($redirect);
@@ -140,7 +140,7 @@ final class BulkActionController extends AbstractController
         $this->denyAccessUnlessGranted(self::ADMIN_ROLE);
 
         $action = $this->registry->get($code);
-        if (null === $action) {
+        if (!$action instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionInterface) {
             throw new NotFoundHttpException(sprintf('Bulk action "%s" not found.', $code));
         }
 
@@ -168,7 +168,7 @@ final class BulkActionController extends AbstractController
         ], new Response(null, $status));
     }
 
-    private function tooManyItems(string $redirect, int $count): Response
+    private function tooManyItems(string $redirect, int $count): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $this->addFlash('error', [
             'message' => 'tmonier_bulk_actions.flash.too_many_items',
