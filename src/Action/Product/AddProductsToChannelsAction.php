@@ -18,9 +18,9 @@ use Webmozart\Assert\Assert;
  * price in a new channel: Sylius cannot sell a variant without channel pricing, and prices are
  * not guessed (the channels may use different currencies).
  */
-final class AddProductsToChannelsAction implements BulkActionInterface
+final readonly class AddProductsToChannelsAction implements BulkActionInterface
 {
-    public function __construct(private readonly ResourceEventDispatcherInterface $resourceEventDispatcher)
+    public function __construct(private ResourceEventDispatcherInterface $resourceEventDispatcher)
     {
     }
 
@@ -70,7 +70,7 @@ final class AddProductsToChannelsAction implements BulkActionInterface
 
         foreach ($channels as $channel) {
             $missingPrice = $this->findVariantWithoutPrice($item, $channel);
-            if (null !== $missingPrice) {
+            if ($missingPrice instanceof \Sylius\Component\Core\Model\ProductVariantInterface) {
                 return BulkActionResult::skipped('tmonier_bulk_actions.skip.missing_channel_pricing', [
                     '%variant%' => (string) $missingPrice->getCode(),
                     '%channel%' => (string) $channel->getName(),
@@ -79,7 +79,7 @@ final class AddProductsToChannelsAction implements BulkActionInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.product', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

@@ -11,11 +11,11 @@ use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 use Webmozart\Assert\Assert;
 
 /** Enables or disables product variants ("product_variant_enable" / "product_variant_disable"). */
-final class ToggleProductVariantAction implements BulkActionInterface
+final readonly class ToggleProductVariantAction implements BulkActionInterface
 {
     public function __construct(
-        private readonly bool $enable,
-        private readonly ResourceEventDispatcherInterface $resourceEventDispatcher,
+        private bool $enable,
+        private ResourceEventDispatcherInterface $resourceEventDispatcher,
     ) {
     }
 
@@ -58,7 +58,7 @@ final class ToggleProductVariantAction implements BulkActionInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.product_variant', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

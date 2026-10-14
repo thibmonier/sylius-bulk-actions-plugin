@@ -11,11 +11,11 @@ use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 use Webmozart\Assert\Assert;
 
 /** Enables or disables products ("product_enable" / "product_disable"). */
-final class ToggleProductAction implements BulkActionInterface
+final readonly class ToggleProductAction implements BulkActionInterface
 {
     public function __construct(
-        private readonly bool $enable,
-        private readonly ResourceEventDispatcherInterface $resourceEventDispatcher,
+        private bool $enable,
+        private ResourceEventDispatcherInterface $resourceEventDispatcher,
     ) {
     }
 
@@ -58,7 +58,7 @@ final class ToggleProductAction implements BulkActionInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.product', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

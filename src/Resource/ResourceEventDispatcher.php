@@ -8,9 +8,9 @@ use Sylius\Resource\Symfony\EventDispatcher\GenericEvent;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult;
 
-final class ResourceEventDispatcher implements ResourceEventDispatcherInterface
+final readonly class ResourceEventDispatcher implements ResourceEventDispatcherInterface
 {
-    public function __construct(private readonly EventDispatcherInterface $eventDispatcher)
+    public function __construct(private EventDispatcherInterface $eventDispatcher)
     {
     }
 
@@ -29,7 +29,7 @@ final class ResourceEventDispatcher implements ResourceEventDispatcherInterface
         }
 
         /** @var array<string, string|int|float> $parameters */
-        $parameters = array_filter($preEvent->getMessageParameters(), 'is_scalar');
+        $parameters = array_filter($preEvent->getMessageParameters(), is_scalar(...));
 
         return BulkActionResult::skipped($message, $parameters);
     }

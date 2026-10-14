@@ -68,7 +68,7 @@ final class BulkActionSecurityTest extends WebTestCase
     public function testTheNumberOfItemsIsCapped(): void
     {
         $this->loginAdmin();
-        $ids = array_map('strval', range(1, 501));
+        $ids = array_map(strval(...), range(1, 501));
 
         $this->client->request('POST', '/admin/bulk-actions/product_disable', ['ids' => $ids], [], ['HTTP_REFERER' => 'http://localhost/admin/products/']);
 

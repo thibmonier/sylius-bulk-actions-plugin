@@ -125,7 +125,7 @@ final class BulkActionProcessorTest extends KernelTestCase
     {
         $products = $this->entityManager()->getRepository(ProductInterface::class)->findBy([], ['id' => 'ASC'], 3);
         self::assertCount(3, $products);
-        $ids = array_map(fn (ProductInterface $product): int => $this->idOf($product), $products);
+        $ids = array_map($this->idOf(...), $products);
         $failingId = $ids[1];
         $action = new class($failingId) implements BulkActionInterface {
             public function __construct(private readonly int $failingId)

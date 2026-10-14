@@ -11,11 +11,11 @@ use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 use Webmozart\Assert\Assert;
 
 /** Enables or disables the shop account of customers; guests (no account) are skipped. */
-final class ToggleCustomerAccountAction implements BulkActionInterface
+final readonly class ToggleCustomerAccountAction implements BulkActionInterface
 {
     public function __construct(
-        private readonly bool $enable,
-        private readonly ResourceEventDispatcherInterface $resourceEventDispatcher,
+        private bool $enable,
+        private ResourceEventDispatcherInterface $resourceEventDispatcher,
     ) {
     }
 
@@ -54,7 +54,7 @@ final class ToggleCustomerAccountAction implements BulkActionInterface
         Assert::isInstanceOf($item, CustomerInterface::class);
 
         $user = $item->getUser();
-        if (null === $user) {
+        if (!$user instanceof \Sylius\Component\User\Model\UserInterface) {
             return BulkActionResult::skipped('tmonier_bulk_actions.skip.no_account');
         }
         if ($this->enable === $user->isEnabled()) {
@@ -62,7 +62,7 @@ final class ToggleCustomerAccountAction implements BulkActionInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.customer', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

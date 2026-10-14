@@ -14,12 +14,12 @@ use Tmonier\SyliusBulkActionsPlugin\Form\Type\AddProductsToTaxonType;
 use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 use Webmozart\Assert\Assert;
 
-final class AddProductsToTaxonAction implements BulkActionInterface
+final readonly class AddProductsToTaxonAction implements BulkActionInterface
 {
     /** @param FactoryInterface<ProductTaxonInterface> $productTaxonFactory */
     public function __construct(
-        private readonly FactoryInterface $productTaxonFactory,
-        private readonly ResourceEventDispatcherInterface $resourceEventDispatcher,
+        private FactoryInterface $productTaxonFactory,
+        private ResourceEventDispatcherInterface $resourceEventDispatcher,
     ) {
     }
 
@@ -67,7 +67,7 @@ final class AddProductsToTaxonAction implements BulkActionInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.product', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

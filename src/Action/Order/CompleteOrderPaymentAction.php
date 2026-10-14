@@ -13,7 +13,7 @@ use Tmonier\SyliusBulkActionsPlugin\StateMachine\TransitionApplierInterface;
 use Webmozart\Assert\Assert;
 
 /** Marks the open payment of orders as paid, from the order grid. */
-final class CompleteOrderPaymentAction implements BulkActionInterface
+final readonly class CompleteOrderPaymentAction implements BulkActionInterface
 {
     private const OPEN_STATES = [
         PaymentInterface::STATE_NEW,
@@ -21,7 +21,7 @@ final class CompleteOrderPaymentAction implements BulkActionInterface
         PaymentInterface::STATE_AUTHORIZED,
     ];
 
-    public function __construct(private readonly TransitionApplierInterface $transitionApplier)
+    public function __construct(private TransitionApplierInterface $transitionApplier)
     {
     }
 
@@ -62,11 +62,11 @@ final class CompleteOrderPaymentAction implements BulkActionInterface
         $payment = null;
         foreach (self::OPEN_STATES as $state) {
             $payment = $item->getLastPayment($state);
-            if (null !== $payment) {
+            if ($payment instanceof \Sylius\Component\Core\Model\PaymentInterface) {
                 break;
             }
         }
-        if (null === $payment) {
+        if (!$payment instanceof \Sylius\Component\Core\Model\PaymentInterface) {
             return BulkActionResult::skipped('tmonier_bulk_actions.skip.no_open_payment');
         }
 

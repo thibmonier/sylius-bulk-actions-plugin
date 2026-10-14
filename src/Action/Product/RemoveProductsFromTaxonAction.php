@@ -13,9 +13,9 @@ use Tmonier\SyliusBulkActionsPlugin\Resource\ResourceEventDispatcherInterface;
 use Webmozart\Assert\Assert;
 
 /** Removes the products from a taxon; the main taxon is unset when it is this taxon. */
-final class RemoveProductsFromTaxonAction implements BulkActionInterface
+final readonly class RemoveProductsFromTaxonAction implements BulkActionInterface
 {
-    public function __construct(private readonly ResourceEventDispatcherInterface $resourceEventDispatcher)
+    public function __construct(private ResourceEventDispatcherInterface $resourceEventDispatcher)
     {
     }
 
@@ -64,7 +64,7 @@ final class RemoveProductsFromTaxonAction implements BulkActionInterface
         }
 
         $stopped = $this->resourceEventDispatcher->dispatchPreEvent('sylius.product', 'update', $item);
-        if (null !== $stopped) {
+        if ($stopped instanceof \Tmonier\SyliusBulkActionsPlugin\Action\BulkActionResult) {
             return $stopped;
         }
 

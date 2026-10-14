@@ -11,7 +11,7 @@ namespace Tmonier\SyliusBulkActionsPlugin\Action;
  * The optional "after flush" callback of an applied result runs once the change is flushed, e.g.
  * to dispatch the "post" resource event that sends an e-mail, exactly like the single action.
  */
-final class BulkActionResult
+final readonly class BulkActionResult
 {
     public const APPLIED = 'applied';
 
@@ -23,10 +23,10 @@ final class BulkActionResult
      * @param array<string, string|int|float> $parameters
      */
     private function __construct(
-        private readonly string $status,
-        private readonly ?string $reason = null,
-        private readonly array $parameters = [],
-        private readonly ?\Closure $afterFlush = null,
+        private string $status,
+        private ?string $reason = null,
+        private array $parameters = [],
+        private ?\Closure $afterFlush = null,
     ) {
     }
 
