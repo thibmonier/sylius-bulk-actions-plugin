@@ -1,5 +1,6 @@
 {% set action = hookable_metadata.context.action %}
 {% set form = hookable_metadata.context.form %}
+{% form_theme form '@SyliusAdmin/shared/form_theme.html.twig' %}
 {% set preview = hookable_metadata.context.preview %}
 {% set count = hookable_metadata.context.count %}
 

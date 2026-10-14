@@ -49,7 +49,17 @@ Twig Hooks; no database table; MySQL, MariaDB and PostgreSQL support.
 
 ## Screenshots
 
-Screenshots go in `docs/images/`.
+![Product grid with five products selected and the Bulk actions menu open: enable, disable, add to or remove from a taxon, add to or remove from channels](docs/images/admin-product-bulk-actions.jpg)
+
+![Add to a taxon confirmation page: taxon chosen, "also set it as the main taxon" option and the list of selected products](docs/images/admin-product-add-taxon.jpg)
+
+![Order grid with six orders selected and the Bulk actions menu open: cancel and mark as paid](docs/images/admin-order-bulk-actions.jpg)
+
+![Shipment grid filtered on ready shipments with the Ship bulk action and the Ship with tracking codes button](docs/images/admin-shipment-bulk-actions.jpg)
+
+![Ship with tracking codes: one line per order with its tracking code, the customers receive the shipment confirmation e-mail](docs/images/admin-shipment-ship-with-tracking-codes.jpg)
+
+![Report after a bulk action: summary flash with updated, skipped and failed counts and the table of skipped items with their reason](docs/images/admin-bulk-action-report.jpg)
 
 ## Requirements
 
