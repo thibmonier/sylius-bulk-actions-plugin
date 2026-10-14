@@ -24,3 +24,5 @@ tmonier_bulk_actions:
         no_shipment_to_ship: 'Aucune expédition prête à expédier.'
     fail:
         aborted: 'Non traité : le traitement s’est arrêté après une erreur de base de données.'
+        flush_error: 'Une erreur est survenue lors de l’enregistrement des modifications. Consultez les journaux du serveur pour plus de détails.'
+        unexpected_error: 'Une erreur inattendue est survenue lors du traitement de cet élément. Consultez les journaux du serveur pour plus de détails.'

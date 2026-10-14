@@ -24,3 +24,5 @@ tmonier_bulk_actions:
         no_shipment_to_ship: 'No shipment ready to ship.'
     fail:
         aborted: 'Not processed: the run stopped after a database error.'
+        flush_error: 'An error occurred while saving the changes. Check the server logs for details.'
+        unexpected_error: 'An unexpected error occurred while processing this item. Check the server logs for details.'
