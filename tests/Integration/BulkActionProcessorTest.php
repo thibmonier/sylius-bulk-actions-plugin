@@ -179,7 +179,7 @@ final class BulkActionProcessorTest extends KernelTestCase
         self::assertSame(2, $report->countApplied());
         self::assertSame(1, $report->countFailed());
         self::assertSame(1, $report->countSkipped());
-        self::assertSame('Boom', $report->getItems(BulkActionResult::FAILED)[0]->getResult()->getReason());
+        self::assertSame('tmonier_bulk_actions.fail.unexpected_error', $report->getItems(BulkActionResult::FAILED)[0]->getResult()->getReason());
         self::assertSame('tmonier_bulk_actions.skip.not_found', $report->getItems(BulkActionResult::SKIPPED)[0]->getResult()->getReason());
         $this->entityManager()->clear();
         self::assertFalse($this->reload(ProductInterface::class, $ids[0])->isEnabled());
