@@ -24,3 +24,5 @@ tmonier_bulk_actions:
         no_shipment_to_ship: 'Brak przesyłki gotowej do wysłania.'
     fail:
         aborted: 'Nie przetworzono: operacja została przerwana po błędzie bazy danych.'
+        flush_error: 'Wystąpił błąd podczas zapisywania zmian. Sprawdź dzienniki serwera, aby uzyskać więcej informacji.'
+        unexpected_error: 'Wystąpił nieoczekiwany błąd podczas przetwarzania tego elementu. Sprawdź dzienniki serwera, aby uzyskać więcej informacji.'

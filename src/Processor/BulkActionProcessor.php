@@ -90,7 +90,7 @@ final class BulkActionProcessor implements BulkActionProcessorInterface
             } catch (\Throwable $exception) {
                 $this->logger->error('Bulk action "{action}": flush failed, the run is stopped.', ['action' => $action->getCode(), 'exception' => $exception]);
                 foreach ($pending as $reportItem) {
-                    $report->add(new BulkActionReportItem($reportItem->getId(), $reportItem->getLabel(), BulkActionResult::failed($exception->getMessage())));
+                    $report->add(new BulkActionReportItem($reportItem->getId(), $reportItem->getLabel(), BulkActionResult::failed('tmonier_bulk_actions.fail.flush_error')));
                 }
                 $aborted = true;
 
@@ -158,7 +158,7 @@ final class BulkActionProcessor implements BulkActionProcessorInterface
                 }
             }
 
-            return BulkActionResult::failed($exception->getMessage());
+            return BulkActionResult::failed('tmonier_bulk_actions.fail.unexpected_error');
         }
     }
 

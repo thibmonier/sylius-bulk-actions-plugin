@@ -24,3 +24,5 @@ tmonier_bulk_actions:
         no_shipment_to_ship: 'Ningún envío listo para enviar.'
     fail:
         aborted: 'No procesado: la ejecución se detuvo tras un error de base de datos.'
+        flush_error: 'Se produjo un error al guardar los cambios. Consulte los registros del servidor para más detalles.'
+        unexpected_error: 'Se produjo un error inesperado al procesar este elemento. Consulte los registros del servidor para más detalles.'

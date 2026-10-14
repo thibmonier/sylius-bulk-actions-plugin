@@ -24,3 +24,5 @@ tmonier_bulk_actions:
         no_shipment_to_ship: 'Geen verzendklare zending.'
     fail:
         aborted: 'Niet verwerkt: de uitvoering stopte na een databasefout.'
+        flush_error: 'Er is een fout opgetreden bij het opslaan van de wijzigingen. Raadpleeg de serverlogboeken voor meer details.'
+        unexpected_error: 'Er is een onverwachte fout opgetreden bij het verwerken van dit item. Raadpleeg de serverlogboeken voor meer details.'

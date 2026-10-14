@@ -24,3 +24,5 @@ tmonier_bulk_actions:
         no_shipment_to_ship: 'Nessuna spedizione pronta.'
     fail:
         aborted: 'Non elaborato: l’esecuzione si è interrotta dopo un errore del database.'
+        flush_error: 'Si è verificato un errore durante il salvataggio delle modifiche. Controllare i log del server per i dettagli.'
+        unexpected_error: 'Si è verificato un errore imprevisto durante l’elaborazione di questo elemento. Controllare i log del server per i dettagli.'

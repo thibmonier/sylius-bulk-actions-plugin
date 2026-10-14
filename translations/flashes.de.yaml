@@ -24,3 +24,5 @@ tmonier_bulk_actions:
         no_shipment_to_ship: 'Keine versandbereite Sendung.'
     fail:
         aborted: 'Nicht verarbeitet: Der Vorgang wurde nach einem Datenbankfehler abgebrochen.'
+        flush_error: 'Beim Speichern der Änderungen ist ein Fehler aufgetreten. Weitere Details finden Sie in den Server-Logs.'
+        unexpected_error: 'Bei der Verarbeitung dieses Elements ist ein unerwarteter Fehler aufgetreten. Weitere Details finden Sie in den Server-Logs.'
