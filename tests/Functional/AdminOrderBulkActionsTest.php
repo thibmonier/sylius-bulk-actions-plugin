@@ -6,6 +6,7 @@ namespace Tests\Tmonier\SyliusBulkActionsPlugin\Functional;
 
 use Sylius\Abstraction\StateMachine\StateMachineInterface;
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\Model\OrderItemUnitInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\OrderPaymentStates;
@@ -39,6 +40,18 @@ final class AdminOrderBulkActionsTest extends WebTestCase
             self::assertCount(1, $crawler->filter(sprintf('[data-test-tmonier-bulk-action="%s"]', $code)), $url);
             self::assertGreaterThan(0, $crawler->filter('input[data-check-all-group="index"]')->count(), $url);
         }
+    }
+
+    public function testTheShipmentGridOffersTheBulkActionWhenTheFixturesCreatedNoShipment(): void
+    {
+        $this->loginAdmin();
+        // US-319: the random fixtures only create a shipment when a shipping method covers the country of the order.
+        $this->removeAllShipments();
+
+        $crawler = $this->client->request('GET', '/admin/shipments/');
+
+        self::assertResponseIsSuccessful();
+        self::assertCount(1, $crawler->filter('[data-test-tmonier-bulk-action="shipment_ship"]'));
     }
 
     public function testItCancelsOrdersAndSkipsTheOnesThatCannotBeCancelled(): void
@@ -210,6 +223,14 @@ final class AdminOrderBulkActionsTest extends WebTestCase
         }
 
         return $shipments;
+    }
+
+    private function removeAllShipments(): void
+    {
+        $entityManager = $this->entityManager();
+        $entityManager->createQuery(sprintf('UPDATE %s u SET u.shipment = NULL', OrderItemUnitInterface::class))->execute();
+        $entityManager->createQuery(sprintf('DELETE FROM %s s', ShipmentInterface::class))->execute();
+        $entityManager->clear();
     }
 
     private function reloadOrder(OrderInterface $order): OrderInterface
