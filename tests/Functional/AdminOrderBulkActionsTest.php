@@ -9,9 +9,11 @@ use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemUnitInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
+use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Sylius\Component\Core\OrderPaymentStates;
 use Sylius\Component\Core\OrderShippingStates;
 use Sylius\Component\Order\OrderTransitions;
+use Sylius\Resource\Factory\FactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /** Bulk actions applying state machine transitions: orders, payments, shipments. */
@@ -33,6 +35,7 @@ final class AdminOrderBulkActionsTest extends WebTestCase
     public function testTheOrderPaymentAndShipmentGridsOfferTheBulkActions(): void
     {
         $this->loginAdmin();
+        $this->readyShipments(1);
 
         foreach (['/admin/orders/' => 'order_cancel', '/admin/payments/' => 'payment_complete', '/admin/shipments/' => 'shipment_ship'] as $url => $code) {
             $crawler = $this->client->request('GET', $url);
@@ -47,6 +50,7 @@ final class AdminOrderBulkActionsTest extends WebTestCase
         $this->loginAdmin();
         // US-319: the random fixtures only create a shipment when a shipping method covers the country of the order.
         $this->removeAllShipments();
+        $this->readyShipments(1);
 
         $crawler = $this->client->request('GET', '/admin/shipments/');
 
@@ -201,8 +205,25 @@ final class AdminOrderBulkActionsTest extends WebTestCase
         return $payment;
     }
 
-    /** @return list<ShipmentInterface> */
+    /**
+     * Ready shipments of placed orders. The random fixtures only create a shipment when a shipping
+     * method covers the country of the order (US-319): the missing ones are created here.
+     *
+     * @return list<ShipmentInterface>
+     */
     private function readyShipments(int $count): array
+    {
+        $shipments = $this->findReadyShipments($count);
+        while (count($shipments) < $count) {
+            $this->createReadyShipment();
+            $shipments = $this->findReadyShipments($count);
+        }
+
+        return $shipments;
+    }
+
+    /** @return list<ShipmentInterface> */
+    private function findReadyShipments(int $count): array
     {
         /** @var list<ShipmentInterface> $shipments */
         $shipments = $this->entityManager()->createQueryBuilder()
@@ -218,11 +239,41 @@ final class AdminOrderBulkActionsTest extends WebTestCase
             ->getQuery()
             ->getResult()
         ;
-        if (count($shipments) < $count) {
-            self::markTestSkipped('The random fixtures do not contain enough shipments ready to ship.');
-        }
 
         return $shipments;
+    }
+
+    private function createReadyShipment(): void
+    {
+        $entityManager = $this->entityManager();
+        /** @var list<OrderInterface> $orders */
+        $orders = $entityManager->createQueryBuilder()
+            ->select('o')
+            ->from(OrderInterface::class, 'o')
+            ->leftJoin('o.shipments', 's')
+            ->andWhere('o.state = :state')
+            ->andWhere('s.id IS NULL')
+            ->setParameter('state', OrderInterface::STATE_NEW)
+            ->orderBy('o.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+        $method = $entityManager->getRepository(ShippingMethodInterface::class)->findOneBy([], ['id' => 'ASC']);
+        if ([] === $orders || null === $method) {
+            self::markTestSkipped('The fixtures contain no placed order without shipment or no shipping method.');
+        }
+
+        /** @var FactoryInterface<ShipmentInterface> $shipmentFactory */
+        $shipmentFactory = self::getContainer()->get('sylius.factory.shipment');
+        $shipment = $shipmentFactory->createNew();
+        $shipment->setMethod($method);
+        $shipment->setState(ShipmentInterface::STATE_READY);
+        foreach ($orders[0]->getItemUnits() as $unit) {
+            $shipment->addUnit($unit);
+        }
+        $orders[0]->addShipment($shipment);
+        $entityManager->flush();
     }
 
     private function removeAllShipments(): void
